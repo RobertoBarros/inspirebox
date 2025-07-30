@@ -1,0 +1,16 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run RSpec (arquivo atual)",
+      "type": "shell",
+      "command": "bundle",
+      "args": ["exec", "rspec", "${file}"],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
