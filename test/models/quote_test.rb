@@ -30,4 +30,18 @@ class QuoteTest < ActiveSupport::TestCase
     assert_not quote.valid?
     assert_includes quote.errors[:content], "é muito longo (máximo: 500 caracteres)"
   end
+
+  test "should be invalid if author is too short" do
+    quote = Quote.new(content: "Seize the day, put very little trust in tomorrow.", author: "A")
+    assert_not quote.valid?
+    assert_includes quote.errors[:author], "é muito curto (mínimo: 2 caracteres)"
+  end
+
+  test "should be invalid if author is too long" do
+    long_author = "A" * 101
+    quote = Quote.new(content: "Seize the day, put very little trust in tomorrow.", author: long_author)
+    assert_not quote.valid?
+    assert_includes quote.errors[:author], "é muito longo (máximo: 100 caracteres)"
+  end
 end
+
